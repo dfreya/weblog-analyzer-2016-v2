@@ -22,8 +22,13 @@ public class Acceso
         hora = Integer.parseInt(fechaYHora[4]);
         minutos = Integer.parseInt(fechaYHora[5].substring(0,1));
         web =fechaYHora[6];
-        http=Integer.parseInt(fechaYHora[7]);
+        http=Integer.parseInt(fechaYHora[7].substring(1,2)); 
         
+    }
+    
+        public String getIp() 
+    {
+        return ip;
     }
     
     public int getAno() 
@@ -53,5 +58,9 @@ public class Acceso
     
     public String getWeb(){
         return web;
+    }
+    
+    public int getHttp(){
+        return http;
     }
 }

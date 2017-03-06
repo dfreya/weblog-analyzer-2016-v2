@@ -65,7 +65,6 @@ public class AnalizadorAccesosAServidor
         if (!accesos.isEmpty()) {
             //primer blucle lento:
             for(Acceso accesoActual: accesos){
-                
                 //segundo bucle rapìdo:
                 int visitasActuales=0;
                 String pagComparada=accesoActual.getWeb();
@@ -90,7 +89,34 @@ public class AnalizadorAccesosAServidor
 
     public String clienteConMasAccesosExitosos()
     {
-        return "";
+        String ipConMasVisitas=null;
+        int numHttp=0;
+        int numTotalVisitas=0;
+        if (!accesos.isEmpty()) {
+            //primer blucle lento:
+            
+            for(Acceso accesoActual: accesos){
+                //segundo bucle rapìdo:
+         
+                int visitasActuales=0;
+                String ipComparada=accesoActual.getWeb();
+                for(Acceso accesoContado : accesos){
+                    if(ipComparada.equals(accesoContado.getIp()) && 2==accesoActual.getHttp() && 2==accesoContado.getHttp()){
+                        visitasActuales++;
+                    }
+                }
+                if(visitasActuales>=numTotalVisitas){
+                    numTotalVisitas=visitasActuales;
+                    ipConMasVisitas=ipComparada;
+                }
+
+            }
+        }
+        else{
+            System.out.println("No hay datos leidos");
+        }
+        
+        return ipConMasVisitas;
     }
 
 }
